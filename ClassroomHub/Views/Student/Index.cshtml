@@ -1,0 +1,36 @@
+﻿@using ClassroomHub.Web.ViewModels;
+@using System.Collections.Generic;
+@model IEnumerable<StudentViewModel>
+<h1>Estudantes</h1>+
+
+<table class="table table-striped table-hover text-center">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Surname)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var student in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => student.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => student.Surname)
+                </td>
+                <td> 
+                    @Html.DisplayFor(modelItem => student.Email)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
