@@ -40,6 +40,8 @@ namespace ClassroomHub.Web.Controllers
 
         [HttpGet]
         public IActionResult GetById(int id) {
+            //GUID uuid
+            //87932D11-AF2A-4D23-8F8A-6CD7BF33DF61
             return Ok();
         }
     }
