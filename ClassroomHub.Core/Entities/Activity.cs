@@ -1,0 +1,14 @@
+﻿using System;
+
+namespace ClassroomHub.Core.Entities
+{
+    internal class Activity
+    {
+        public Guid TeacherId { get; set; }
+        public Teacher Teacher { get; set; }
+        public Guid ModuleId { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public DateTime DueDate { get; set; }
+    }
+}
