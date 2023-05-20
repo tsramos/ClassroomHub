@@ -7,7 +7,8 @@ namespace ClassroomHub.Services
 {
     public class UserService : IUserService
     {
-        public void Create(User user) { 
+        public void Create(User user) 
+        { 
 
         }
         public void Update(User user)
