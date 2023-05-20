@@ -11,5 +11,6 @@ namespace ClassroomHub.Core.Entities
         public Guid TeacherId { get; set; }
         public Teacher Teacher { get; set; }
         public Guid ModuleId { get; set; }
+        public Module Module { get; set; }
     }
 }

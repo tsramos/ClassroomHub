@@ -6,6 +6,6 @@ namespace ClassroomHub.Core.Entities
     {
         public string Name { get; set; }
         public string Description { get; set; }
-        List<Student> Students { get; set; }        
+        public List<Class> Classes { get; set; }        
     }
 }
