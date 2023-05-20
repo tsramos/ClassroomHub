@@ -26,7 +26,7 @@ namespace ClassroomHub.Web.Controllers
         // POST: TeacherController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult Create(Teacher collection)
         {            
             try
             {

@@ -1,12 +1,16 @@
+using ClassroomHub.Core.Contracts;
+using ClassroomHub.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AutoMapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClassroomHub.Web.AutoMapper;
 
 namespace ClassroomHub
 {
@@ -23,6 +27,7 @@ namespace ClassroomHub
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddAutoMapper(typeof(MapperProfile));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +53,14 @@ namespace ClassroomHub
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+        }
+
+        public void InjectDependencies(IServiceCollection services)
+        {
+            services.AddScoped<IUserService, UserService>();   
+            //services.AddScoped<ITeacherService, TeacherService>();   
+            //services.AddScoped<IClassService, ClassService>();   
+            //services.AddScoped<IModuleService, ModuleService>();
         }
     }
 }
