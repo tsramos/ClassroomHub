@@ -10,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using ClassroomHub.DependencyInjection;
 using ClassroomHub.Web.AutoMapper;
 
 namespace ClassroomHub
@@ -28,11 +29,14 @@ namespace ClassroomHub
         {
             services.AddControllersWithViews();
             services.AddAutoMapper(typeof(MapperProfile));
+            services.AddServicesDependency();
+            services.AddRepositoryDependency();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -53,14 +57,6 @@ namespace ClassroomHub
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-        }
-
-        public void InjectDependencies(IServiceCollection services)
-        {
-            services.AddScoped<IUserService, UserService>();   
-            //services.AddScoped<ITeacherService, TeacherService>();   
-            //services.AddScoped<IClassService, ClassService>();   
-            //services.AddScoped<IModuleService, ModuleService>();
         }
     }
 }

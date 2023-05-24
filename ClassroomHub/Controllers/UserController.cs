@@ -3,6 +3,7 @@ using ClassroomHub.Core.Entities;
 using ClassroomHub.Web.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
+using System.Collections.Generic;
 
 namespace ClassroomHub.Web.Controllers
 {
@@ -26,6 +27,14 @@ namespace ClassroomHub.Web.Controllers
             var user = _mapper.Map<User>(model);
             _userService.Create(user);
             return Ok();
+        }
+
+        public IActionResult GetAll()
+        {
+            var users = _userService.GetAll();
+            var userViewModel = _mapper.Map<List<User>>(users); 
+            return View(userViewModel);
+
         }
     }
 }
