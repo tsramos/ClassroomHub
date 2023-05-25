@@ -2,9 +2,8 @@
 
 namespace ClassroomHub.Core.Entities
 {
-    public class User
-    {
-        public Guid Id { get; set; }
+    public class User : EntityBase
+    {        
         public string Name { get; set; }
         public string Password { get; set; }
         public string Surname { get; set; }

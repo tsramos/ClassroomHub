@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ClassroomHub.Core.Entities
 {
-    internal class Teacher
+    public class Teacher : EntityBase
     {
         public string Name { get; set; }
         public string Surname { get; set; }

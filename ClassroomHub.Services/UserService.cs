@@ -1,4 +1,4 @@
-﻿using ClassroomHub.Core.Contracts;
+﻿using ClassroomHub.Core.Contracts.Services;
 using ClassroomHub.Core.Entities;
 using System;
 using System.Collections.Generic;

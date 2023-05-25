@@ -2,7 +2,7 @@
 
 namespace ClassroomHub.Services
 {
-    public class ActivityService : IActivityService
+    public class StudentService : IStudentService
     {
     }
 }

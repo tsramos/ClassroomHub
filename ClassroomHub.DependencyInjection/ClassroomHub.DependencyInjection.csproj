@@ -10,6 +10,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\ClassroomHub.Core\ClassroomHub.Core.csproj" />
+    <ProjectReference Include="..\ClassroomHub.Data\ClassroomHub.Data.csproj" />
     <ProjectReference Include="..\ClassroomHub.Services\ClassroomHub.Services.csproj" />
   </ItemGroup>
 

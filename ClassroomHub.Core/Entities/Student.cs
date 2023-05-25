@@ -2,7 +2,7 @@
 
 namespace ClassroomHub.Core.Entities
 {
-    internal class Student
+    public class Student : EntityBase
     {
         public string Name { get; set; }
         public string Surname { get; set; }

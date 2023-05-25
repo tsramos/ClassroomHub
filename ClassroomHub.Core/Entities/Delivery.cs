@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ClassroomHub.Core.Entities
 {
-    internal class Delivery
+    public class Delivery : EntityBase
     {
         public Guid ActivityId { get; set; }
         public Activity Activity { get; set; }

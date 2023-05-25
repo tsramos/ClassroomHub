@@ -1,4 +1,4 @@
-﻿namespace ClassroomHub.Core.Contracts
+﻿namespace ClassroomHub.Core.Contracts.Services
 {
     public interface ITeacherService
     {

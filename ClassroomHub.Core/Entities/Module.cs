@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ClassroomHub.Core.Entities
 {
-    internal class Module
+    public class Module : EntityBase
     {
         public string Nome { get; set; }
         public string Description { get; set; }
