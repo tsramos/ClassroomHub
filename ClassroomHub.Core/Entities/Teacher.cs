@@ -10,6 +10,6 @@ namespace ClassroomHub.Core.Entities
         public string Email { get; set; }
         public Guid UserId { get; set; }
         public User User { get; set; }
-        List<Module> Modules { get; set; }
+        public List<Module> Modules { get; set; }
     }
 }

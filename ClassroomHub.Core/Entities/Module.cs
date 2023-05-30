@@ -12,6 +12,6 @@ namespace ClassroomHub.Core.Entities
         public DateTime End { get; set; }
         public Guid TeacherId { get; set; }
         public Teacher Teacher { get; set; }
-        public List<Activity> Activity { get; set; }
+        public List<Activity> Activities { get; set; }
     }
 }

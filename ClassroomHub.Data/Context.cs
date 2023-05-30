@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using ClassroomHub.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomHub.Data
 {
@@ -10,7 +11,7 @@ namespace ClassroomHub.Data
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
-        { 
+        {             
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(Context).Assembly);
         }
     }
