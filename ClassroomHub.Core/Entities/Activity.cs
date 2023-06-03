@@ -10,7 +10,5 @@ namespace ClassroomHub.Core.Entities
         public int ActivityScore { get; set; }
         public Guid ModuleId { get; set; }
         public Module Module { get; set; }
-        public Guid StudentId { get; set; }
-        public Student Student { get; set; }
     }
 }
