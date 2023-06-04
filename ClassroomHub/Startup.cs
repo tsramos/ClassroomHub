@@ -12,6 +12,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using ClassroomHub.DependencyInjection;
 using ClassroomHub.Web.AutoMapper;
+using ClassroomHub.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomHub
 {
@@ -27,8 +29,9 @@ namespace ClassroomHub
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllersWithViews();
             services.AddAutoMapper(typeof(MapperProfile));
+            services.AddDbContext<Context>(x => x.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ClassroomHubDB;Trusted_Connection=True;"));
+            services.AddControllersWithViews();
             services.AddServicesDependency();
             services.AddRepositoryDependency();
         }

@@ -15,17 +15,24 @@ namespace ClassroomHub.Web.Controllers
         public UserController(IUserService userService, IMapper mapper)
         {
             _mapper = mapper;
-            userService = _userService;
+            _userService = userService;
         }
         public IActionResult Index()
         {
+            User user = new User()
+            {
+                Email = "thiago.ramos@gmail.com", 
+                Password = "password",                
+            };
+            _userService.Create(user);
+
             return View();
         }
 
         public IActionResult Create(UserViewModel model)
         {
             var user = _mapper.Map<User>(model);
-            _userService.Create(user);
+            
             return Ok();
         }
 

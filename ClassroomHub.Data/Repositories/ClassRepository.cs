@@ -6,5 +6,8 @@ namespace ClassroomHub.Data.Repositories
 {
     public class ClassRepository : BaseRepository<Class>, IClassRepository
     {
+        public ClassRepository(Context context) : base(context)
+        {
+        }
     }
 }
