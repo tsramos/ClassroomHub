@@ -1,19 +1,12 @@
-using ClassroomHub.Core.Contracts;
-using ClassroomHub.Services;
+using ClassroomHub.Data;
+using ClassroomHub.DependencyInjection;
+using ClassroomHub.Web.AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AutoMapper;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using ClassroomHub.DependencyInjection;
-using ClassroomHub.Web.AutoMapper;
-using ClassroomHub.Data;
-using Microsoft.EntityFrameworkCore;
 
 namespace ClassroomHub
 {

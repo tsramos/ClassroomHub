@@ -10,7 +10,7 @@ namespace ClassroomHub.Data
         {
         }
 
-        public Context( string connString)
+        public Context(DbContextOptions options,string connString) : this(options)
         {
             _connString = connString;
         }
