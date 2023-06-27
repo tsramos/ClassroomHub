@@ -2,7 +2,7 @@
 @model IEnumerable<CourseViewModel>
 
 <h1>Cursos</h1>
-<br />
+<br/>
 <div class="row">
     <p>
         <partial name="_create" model="new CourseViewModel()"></partial>
@@ -27,7 +27,12 @@
                 <td class="text-center">
                     @Html.DisplayFor(x => course.Name)
                 </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@course.Id" style="text-decoration: none;"><i class="fa fa-edit ml-2"></i></a>
+                    <a data-toggle="modal" data-target="#removeConfirmation"><i class="fa fa-trash ml-2"></i></a>
+                </td>
             </tr>
+         <partial name="_delete" model="course.Id"></partial>
         }
     </tbody>
             
@@ -37,3 +42,8 @@
         <p>Não há cursos cadastrados</p>           
     }
 </table>
+
+@section Scripts{
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+}
+       

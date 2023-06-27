@@ -1,6 +1,5 @@
-﻿using ClassroomHub.Core.Entities;
-using ClassroomHub.Core.Contracts.Repositories;
-using System.ComponentModel;
+﻿using ClassroomHub.Core.Contracts.Repositories;
+using ClassroomHub.Core.Entities;
 
 namespace ClassroomHub.Data.Repositories
 {

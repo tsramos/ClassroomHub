@@ -17,6 +17,7 @@ namespace ClassroomHub.DependencyInjection
             services.AddScoped<ICourseService, CourseService>();
             services.AddScoped<IDeliveryService, DeliveryService>();
             services.AddScoped<IModuleService, ModuleService>();
+            services.AddScoped<IClassService, ClassService>();
         }
        
         public static void AddRepositoryDependency(this IServiceCollection services)

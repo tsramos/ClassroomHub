@@ -8,12 +8,12 @@ namespace ClassroomHub.Web.ViewModels
     {
         public Guid Id { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Campo obrigatório.")]
         [DisplayName("Nome do Curso")]
         [MaxLength(50)]
         public string Name { get; set; }
 
-        [DisplayName("Descríção")]
+        [DisplayName("Descrição")]
         [MaxLength(400)]
         public string Description { get; set; }
     }

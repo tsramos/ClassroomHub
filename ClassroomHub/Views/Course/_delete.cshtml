@@ -1,0 +1,20 @@
+﻿@model Guid;
+<div class="modal fade" id="removeConfirmation" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-danger">
+                <h5 class="modalcard-title text-white">Excluir curso</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar">
+                    <span aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="modal-body">
+                Curso será totalmente deletado deseja prosseguir ?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+                <a type="submit" class="btn btn-primary" asp-action="Delete" asp-route-id=@Model>Prosseguir</a>
+            </div>
+        </div>
+    </div>
+</div>
