@@ -2,9 +2,11 @@
 @using ClassroomHub.Web.ViewModels
 @model IEnumerable<ClassViewModel> 
 
+
 <h1>Turmas</h1>
 
 <partial name="_create" model="new ClassViewModel()"><partial/>
+<partial name="_searchClasses"></partial>
 
 @if(!Model.Any()){
     <div class="text-center">
@@ -47,5 +49,5 @@
                 </tr>
             }
         </tbody>
-    </table>
+    </table>    
 }

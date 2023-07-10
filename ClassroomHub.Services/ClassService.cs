@@ -1,6 +1,7 @@
 ﻿using ClassroomHub.Core.Contracts.Repositories;
 using ClassroomHub.Core.Contracts.Services;
 using ClassroomHub.Core.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace ClassroomHub.Services
@@ -23,6 +24,11 @@ namespace ClassroomHub.Services
         {
             //podemos adicionar no futro meios de validar isso tudo.
             _classRepository.Add(entity);
+        }
+
+        public IEnumerable<Class> GetAllByCourseId(Guid courseId)
+        {
+            return _classRepository.GetClassesByCourseId(courseId);
         }
     }
 }

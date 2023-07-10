@@ -7,7 +7,7 @@ namespace ClassroomHub.Core.Contracts.Services
     public interface ICourseService
     {
         IEnumerable<Course> GetAll();
-        void Add(Course course);
+        void Add(Course course);        
 
         void Update(Course course);
         Course GetById(Guid id);

@@ -1,5 +1,6 @@
-﻿@model Guid;
-<div class="modal fade" id="removeConfirmation" tabindex="-1" role="dialog" aria-hidden="true">
+﻿@model Tuple<string, Guid>;
+
+<div class="modal fade" id=@Model.Item1 tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header bg-danger">
@@ -13,7 +14,7 @@
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
-                <a type="submit" class="btn btn-primary" asp-action="Delete" asp-route-id=@Model>Prosseguir</a>
+                <a type="submit" class="btn btn-primary" asp-action="Delete" asp-route-id=@Model.Item2>Prosseguir</a>
             </div>
         </div>
     </div>

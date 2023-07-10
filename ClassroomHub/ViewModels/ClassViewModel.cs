@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 namespace ClassroomHub.Web.ViewModels
@@ -21,8 +22,8 @@ namespace ClassroomHub.Web.ViewModels
         [Required]
         public DateTime End { get; set; }
 
-        
-
-        
+        [Display(Name="Curso")]
+        [Required(ErrorMessage ="Selecione um curso !!")]
+        public Guid CourseId { get; set; }
     }
 }

@@ -1,9 +1,6 @@
 ﻿using ClassroomHub.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace ClassroomHub.Data.Configuration
 {
@@ -15,7 +12,11 @@ namespace ClassroomHub.Data.Configuration
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Name).IsRequired();
             builder.Property(x => x.Start).IsRequired();
-            builder.Property(x => x.End).IsRequired();            
+            builder.Property(x => x.End).IsRequired();
+            builder.Property(x => x.CourseId).IsRequired();
+            builder.HasOne(x => x.Course)
+                   .WithMany(x => x.Classes)
+                   .HasForeignKey(x => x.CourseId);
         }
     }
 }
