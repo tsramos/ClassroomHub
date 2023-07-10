@@ -14,35 +14,47 @@
                         <span aria-hidden="true"></span>
                     </button>
                 </div>
-                <div class="modal-body">
-                    <div class="row mt-3">
-                        <div class="col-12">
-                            @Html.DisplayNameFor(x => x.CourseId)
-                            @Html.DropDownListFor(x => x.CourseId,(SelectList)ViewBag.Courses, "Selecione um curso", new {@class="form-control mt-2"})
-                            <span asp-validation-for="CourseId" class="text-danger"></span>
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-12">
-                            @Html.DisplayNameFor(x => x.Name)
-                            @Html.TextBoxFor(x => x.Name, new{ Placeholder="Nome da Turma", Attribute="width:100%", @class="form-control mt-2"})
-                        </div>
-                    </div>
-                    <div class="row mt-3">
-                        <div class="col-6">
-                            @Html.DisplayNameFor(x => x.Start)
-                            @Html.TextBoxFor(x => x.Start, new {Placeholder = "Inicio" ,Type="Date", @class="form-control mt-2" })
-                        </div>
-                        <div class="col-6">
-                            @Html.DisplayNameFor(x => x.End)
-                            @Html.TextBoxFor(x => x.End, new {Placeholder = "Conclusão", Type="Date", @class="form-control mt-2"})
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fechar</button>
-                    <button type="submit" class="btn btn-primary">Salvar</button>
-                </div>
+                    @{
+                        var courses = (SelectList)ViewBag.Courses;
+                        if (!courses.Any())
+                        {
+                            <div class="modal-body">
+                                <span class="text-danger">Não é possível cadastrar novas turmas sem um curso registrado.</span>
+                                <a type="button"  asp-controller="Course" asp-action="Index" class="btn btn-primary mt-2">Cadastrar Curso</a>  
+                            </div>
+                        }else
+                        {
+                           <div class="modal-body">
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        @Html.DisplayNameFor(x => x.CourseId)
+                                        @Html.DropDownListFor(x => x.CourseId,(SelectList)ViewBag.Courses, "Selecione um curso", new {@class="form-control mt-2"})
+                                        <span asp-validation-for="CourseId" class="text-danger"></span>
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-12">
+                                        @Html.DisplayNameFor(x => x.Name)
+                                        @Html.TextBoxFor(x => x.Name, new{ Placeholder="Nome da Turma", Attribute="width:100%", @class="form-control mt-2"})
+                                    </div>
+                                </div>
+                                <div class="row mt-3">
+                                    <div class="col-6">
+                                        @Html.DisplayNameFor(x => x.Start)
+                                        @Html.TextBoxFor(x => x.Start, new {Placeholder = "Inicio" ,Type="Date", @class="form-control mt-2" })
+                                    </div>
+                                    <div class="col-6">
+                                        @Html.DisplayNameFor(x => x.End)
+                                        @Html.TextBoxFor(x => x.End, new {Placeholder = "Conclusão", Type="Date", @class="form-control mt-2"})
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fechar</button>
+                                <button type="submit" class="btn btn-primary">Salvar</button>
+                            </div>
+                        }
+                    }
             </div>
         </div>
     </div>
