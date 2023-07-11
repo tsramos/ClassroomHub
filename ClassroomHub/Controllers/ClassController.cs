@@ -6,6 +6,8 @@ using ClassroomHub.Web.ViewModels;
 using ClassroomHub.Core.Entities;
 using System;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using ClassroomHub.Web.Models;
+using ClassroomHub.Core.ApplicationExeception;
 
 namespace ClassroomHub.Web.Controllers
 {
@@ -25,7 +27,7 @@ namespace ClassroomHub.Web.Controllers
         public IActionResult Index()
         {
             var courses = _mapper.Map<List<CourseViewModel>>(_courseService.GetAll());
-            ViewBag.Courses = new SelectList(courses, "Id", "Name");        
+            ViewBag.Courses = new SelectList(courses, "Id", "Name");
             return View(new List<ClassViewModel>());
         }
 
@@ -40,10 +42,24 @@ namespace ClassroomHub.Web.Controllers
         }
 
         public IActionResult Create(ClassViewModel model)
-        {            
-            var classEntity = _mapper.Map<Class>(model);
-            _classService.Add(classEntity);
-            return RedirectToAction(nameof(Index));
+        {
+            try
+            {
+                var classEntity = _mapper.Map<Class>(model);
+                _classService.Add(classEntity);
+                return RedirectToAction(nameof(Index));
+
+            }
+            catch (InvalidDateExeception e)
+            {
+                return RedirectToAction(nameof(Error), new { message = e.Message });
+            }
+        }
+
+        public IActionResult Error(string message)
+        {
+            var errorViewModel = new ErrorViewModel() { Message = message };
+            return View(errorViewModel);
         }
     }
 }
