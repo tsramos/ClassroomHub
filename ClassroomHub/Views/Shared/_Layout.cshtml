@@ -19,6 +19,15 @@
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
                     <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle text-dark" href="#" id="usersDropdown" role="button" data-toggle="dropdown" aria-haspopup="true">
+                              Usuários
+                            </a>                            
+                            <div class="dropdown-menu" aria-labelledby="usersDropdown">
+                              <a class="dropdown-item text-dark" asp-controller="User" asp-action="Index">Usuários</a>
+                              <a class="dropdown-item text-dark" asp-controller="Student" asp-action="Index">Alunos</a>                              
+                            </div>
+                        </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Activity" asp-action="Index">Atividades</a>
                         </li>

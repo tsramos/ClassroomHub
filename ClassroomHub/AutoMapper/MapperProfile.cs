@@ -16,6 +16,8 @@ namespace ClassroomHub.Web.AutoMapper
             CreateMap<CourseViewModel, Course>().ReverseMap();
 
             CreateMap<ClassViewModel, Class>().ReverseMap();
+
+            CreateMap<StudentViewModel, Student>().ReverseMap();
             
         }
     }

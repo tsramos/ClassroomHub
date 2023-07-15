@@ -19,21 +19,19 @@ namespace ClassroomHub.Web.Controllers
         }
         public IActionResult Index()
         {
-            User user = new User()
-            {
-                Email = "thiago.ramos@gmail.com", 
-                Password = "password",                
-            };
-            _userService.Create(user);
-
             return View();
         }
 
         public IActionResult Create(UserViewModel model)
         {
             var user = _mapper.Map<User>(model);
-            
-            return Ok();
+            _userService.Create(user);
+
+            if (model.IsTeacher)
+            {
+                return RedirectToAction("Index", "Teacher");
+            }
+            return RedirectToAction(nameof(Index),"Student");
         }
 
         public IActionResult GetAll()
