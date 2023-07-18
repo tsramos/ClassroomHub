@@ -32,7 +32,7 @@ namespace ClassroomHub.Web.Controllers
 
             if (model.IsTeacher)
             {
-                return RedirectToAction("Index", "Teacher");
+                return RedirectToAction(nameof(Index), "Teacher");
             }
             return RedirectToAction(nameof(Index),"Student");
         }

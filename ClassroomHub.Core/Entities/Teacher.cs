@@ -7,7 +7,7 @@ namespace ClassroomHub.Core.Entities
     {
         public string Name { get; set; }
         public string Surname { get; set; }
-        public string Email { get; set; }
+        public string Especializacao { get; set; }
         public Guid UserId { get; set; }
         public User User { get; set; }
         public List<Module> Modules { get; set; }

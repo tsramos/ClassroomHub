@@ -20,7 +20,10 @@ namespace ClassroomHub.Web.AutoMapper
             CreateMap<StudentViewModel, Student>();
 
             CreateMap<Student, StudentViewModel>().ForMember(x => x.Email, src => src.MapFrom(x => x.User.Email));
-            
+
+            CreateMap<TeacherViewModel, Teacher>();
+
+            CreateMap<Teacher, TeacherViewModel>().ForMember(x => x.Email, src => src.MapFrom(x => x.User.Email));
         }
     }
 }

@@ -1,14 +1,30 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AutoMapper;
+using ClassroomHub.Core.Contracts.Services;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using ClassroomHub.Web.ViewModels;
 
 namespace ClassroomHub.Web.Controllers
 {
     public class TeacherController : Controller
     {
+        private readonly ITeacherService _teacherService;
+        private readonly IMapper _mapper;
+
+        public TeacherController(ITeacherService teacherService, IMapper mapper)
+        {
+            _teacherService = teacherService;
+            _mapper = mapper;
+        }
+
+
         // GET: TeacherController
         public ActionResult Index()
         {
-            return View();
+            var teachers = _teacherService.GetAll();
+            var teacherViewModel = _mapper.Map<IEnumerable<TeacherViewModel>>(teachers);
+            return View(teacherViewModel);
         }
 
         // GET: TeacherController/Details/5
