@@ -1,6 +1,7 @@
 ﻿using ClassroomHub.Core.Entities;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace ClassroomHub.Core.Contracts.Repositories
 {
@@ -11,5 +12,6 @@ namespace ClassroomHub.Core.Contracts.Repositories
         IEnumerable<T> GetAll();
         void Update(T entity);
         void Delete(Guid id);
+        IQueryable<T> Get();
     }
 }

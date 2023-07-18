@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using AutoMapper;
 using System.Collections.Generic;
 using ClassroomHub.Core.Contracts.Services;
+using System;
 
 namespace ClassroomHub.Web.Controllers
 {
@@ -19,7 +20,9 @@ namespace ClassroomHub.Web.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var users = _userService.GetAll();
+            var userViewModel = _mapper.Map<List<UserViewModel>>(users); 
+            return View(userViewModel);            
         }
 
         public IActionResult Create(UserViewModel model)
@@ -34,12 +37,18 @@ namespace ClassroomHub.Web.Controllers
             return RedirectToAction(nameof(Index),"Student");
         }
 
-        public IActionResult GetAll()
+        [HttpGet]
+        public IActionResult Update(Guid id)
         {
-            var users = _userService.GetAll();
-            var userViewModel = _mapper.Map<List<User>>(users); 
-            return View(userViewModel);
+            var model = _mapper.Map<UserViewModel>(_userService.GetById(id));
+            return View(model);
+        }
 
+        [HttpPost]
+        public IActionResult Update(UserViewModel model) 
+        {
+            _userService.Update(_mapper.Map<User>(model));
+            return RedirectToAction(nameof(Index));
         }
     }
 }

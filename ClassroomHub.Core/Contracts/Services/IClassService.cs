@@ -8,6 +8,9 @@ namespace ClassroomHub.Core.Contracts.Services
     {
         IEnumerable<Class> GetAll();
         IEnumerable<Class> GetAllByCourseId(Guid courseId);
+        Class GetById(Guid id);
         void Add(Class entity);
+        void Update(Class entity);
+        void Delete(Guid id);
     }
 }

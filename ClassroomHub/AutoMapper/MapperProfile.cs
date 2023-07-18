@@ -17,7 +17,9 @@ namespace ClassroomHub.Web.AutoMapper
 
             CreateMap<ClassViewModel, Class>().ReverseMap();
 
-            CreateMap<StudentViewModel, Student>().ReverseMap();
+            CreateMap<StudentViewModel, Student>();
+
+            CreateMap<Student, StudentViewModel>().ForMember(x => x.Email, src => src.MapFrom(x => x.User.Email));
             
         }
     }

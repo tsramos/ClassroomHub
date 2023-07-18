@@ -26,5 +26,8 @@
         [Required(ErrorMessage ="Selecione um usuário")]
         public Guid UserId { get; set; }
 
+        [DisplayName("Email")]
+        public string Email { get; set; }
+
     }
 }

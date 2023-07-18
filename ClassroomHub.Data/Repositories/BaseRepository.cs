@@ -1,5 +1,6 @@
 ﻿using ClassroomHub.Core.Contracts.Repositories;
 using ClassroomHub.Core.Entities;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,9 +27,11 @@ namespace ClassroomHub.Data.Repositories
             return this._context.Set<T>().FirstOrDefault(x => x.Id == id);
         }
 
+        public IQueryable<T> Get() => this._context.Set<T>();
+
         public IEnumerable<T> GetAll()
         {
-            return this._context.Set<T>();
+            return this.Get();
         }
         public void Update(T entity) {
             this._context.Set<T>().Update(entity); 

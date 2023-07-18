@@ -18,7 +18,7 @@
                          @Html.DisplayNameFor(x => x.UserName)
                          @Html.TextBoxFor(x => x.UserName, new {@class="form-control"})
                          @Html.DisplayNameFor(x => x.Password)
-                         @Html.TextBoxFor(x => x.Password,new {@class="form-control"})
+                         @Html.TextBoxFor(x => x.Password,new {@class="form-control", type="password"})
                          @Html.RadioButtonFor(m => m.IsTeacher, true) 
                          <span>Professor</span>
                          @Html.RadioButtonFor(m => m.IsTeacher, false) 

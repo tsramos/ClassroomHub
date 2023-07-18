@@ -30,21 +30,26 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var @class in Model)
-            {
-                <tr>
+            @for(int i =0; i < Model.Count(); i++)
+                {
+                    var _class = Model.ToList()[i];
+                    <tr>
                     <td>
-                        @Html.DisplayFor( x => @class.Name)
+                        @Html.DisplayFor( x => _class.Name)
                     </td>
                     <td>
-                        @Html.DisplayFor(x => @class.Start)
+                        @Html.DisplayFor(x => _class.Start)
                     </td>
                     <td>
-                        @Html.DisplayFor(x => @class.End)
+                        @Html.DisplayFor(x => _class.End)
                     </td>
                     <td>
-                        <a><i class="fa fa-edit" style="font-size:x-large"></i></a>
-                        <a><i class="fa fa-trash" style="font-size:x-large"></i></a>
+                        <a asp-action="Update" asp-route-id="@_class.Id"><i class="fa fa-edit" style="font-size:x-large"></i></a>
+                            @{
+                                Tuple<string, Guid> param = new Tuple<string , Guid >("remove" + i, _class.Id);
+                            }
+                        <a data-toggle="modal" data-target="#@param.Item1"><i class="fa fa-trash ml-2"></i></a>
+                        <partial name="_delete" model="@param"></partial>
                     </td>
                 </tr>
             }

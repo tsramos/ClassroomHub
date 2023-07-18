@@ -56,6 +56,28 @@ namespace ClassroomHub.Web.Controllers
             }
         }
 
+        [HttpGet]
+        public IActionResult Update(Guid id)
+        {
+            var model = _mapper.Map<ClassViewModel>(_classService.GetById(id));
+            var courses = _courseService.GetAll();
+            ViewBag.Courses = new SelectList(courses, "Id", "Name");
+            return View(model);
+        }
+
+        public IActionResult Update(ClassViewModel model)
+        {
+            var entity = _mapper.Map<Class>(model);
+            _classService.Update(entity);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public IActionResult Delete(Guid id)
+        {
+            _classService.Delete(id);
+            return RedirectToAction(nameof(Index));
+        }
+
         public IActionResult Error(string message)
         {
             var errorViewModel = new ErrorViewModel() { Message = message };
