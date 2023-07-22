@@ -17,8 +17,12 @@ namespace ClassroomHub.Web.ViewModels
         [DisplayName("Sobrenome")]
         public string Surname { get; set; }
 
-        public string Especializacao { get; set; }
+        
+        [DisplayName("Especialização")]
+        public string Especialization { get; set; }
 
         public string Email { get; set; }
+
+        public Guid UserId { get; set; }
     }
 }

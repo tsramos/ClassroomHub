@@ -6,5 +6,6 @@ namespace ClassroomHub.Core.Contracts.Services
     public interface ITeacherService
     {
         IEnumerable<Teacher> GetAll();
+        void Create(Teacher teacher);
     }
 }

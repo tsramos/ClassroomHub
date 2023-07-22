@@ -4,17 +4,21 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using ClassroomHub.Web.ViewModels;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using ClassroomHub.Core.Entities;
 
 namespace ClassroomHub.Web.Controllers
 {
     public class TeacherController : Controller
     {
         private readonly ITeacherService _teacherService;
+        private readonly IUserService _userService;
         private readonly IMapper _mapper;
 
-        public TeacherController(ITeacherService teacherService, IMapper mapper)
+        public TeacherController(ITeacherService teacherService, IUserService userService, IMapper mapper)
         {
             _teacherService = teacherService;
+            _userService = userService;
             _mapper = mapper;
         }
 
@@ -22,6 +26,9 @@ namespace ClassroomHub.Web.Controllers
         // GET: TeacherController
         public ActionResult Index()
         {
+            var users = _userService.GetAll();
+            var usersViewModel = _mapper.Map<IEnumerable<UserViewModel>>(users);
+            ViewBag.Users = new SelectList(usersViewModel, "Id", "UserName");
             var teachers = _teacherService.GetAll();
             var teacherViewModel = _mapper.Map<IEnumerable<TeacherViewModel>>(teachers);
             return View(teacherViewModel);
@@ -33,25 +40,13 @@ namespace ClassroomHub.Web.Controllers
             return View();
         }
 
-        // GET: TeacherController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
         // POST: TeacherController/Create
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
-        {            
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+        [HttpPost]        
+        public ActionResult Create(TeacherViewModel model)
+        {
+            var teacher = _mapper.Map<Teacher>(model);
+            _teacherService.Create(teacher);
+            return RedirectToAction(nameof(Index));
         }
 
         // GET: TeacherController/Edit/5
@@ -61,8 +56,7 @@ namespace ClassroomHub.Web.Controllers
         }
 
         // POST: TeacherController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public ActionResult Edit(int id, IFormCollection collection)
         {
             try
@@ -82,8 +76,7 @@ namespace ClassroomHub.Web.Controllers
         }
 
         // POST: TeacherController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]        
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try

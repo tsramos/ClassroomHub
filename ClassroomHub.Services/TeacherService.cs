@@ -18,5 +18,10 @@ namespace ClassroomHub.Services
         {
             return _teacherRepository.GetFullTeachers();
         }
+
+        public void Create(Teacher teacher)
+        {
+            _teacherRepository.Add(teacher);
+        }
     }
 }
