@@ -27,6 +27,7 @@ namespace ClassroomHub.DependencyInjection
             services.AddScoped<IClassRepository, ClassRepository>();
             services.AddScoped<ICourseRepository, CourseRepository>();
             services.AddScoped<ITeacherRepository, TeacherRepository>();
+            services.AddScoped<IModuleRepository, ModuleRepository>();
         }
     }
 }
