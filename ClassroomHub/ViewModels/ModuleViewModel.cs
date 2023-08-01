@@ -35,5 +35,7 @@ namespace ClassroomHub.Web.ViewModels
 
         [DisplayName("Professor")]        
         public string TeacherName { get; set; }
+
+        public Guid ClassId { get; set; }
     }
 }

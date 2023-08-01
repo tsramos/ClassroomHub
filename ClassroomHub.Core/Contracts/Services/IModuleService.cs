@@ -9,5 +9,7 @@ namespace ClassroomHub.Core.Contracts.Services
         IEnumerable<Module> GetAll();
         void Add(Module module);
         Module GetById(Guid id);
+
+        IEnumerable<Module> GetModulesByTeacherId(Guid id);
     }
 }

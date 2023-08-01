@@ -13,9 +13,10 @@
                 <h5 class="modal-title text-white">Cadastrar Modulo</h5>
                 <button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar"></button>
             </div>          
-            @{
-                var teachers = (SelectList)ViewBag.Teachers;
-                if (!teachers.Any())
+                @{
+                    var teachers = (SelectList)ViewBag.Teachers;
+                    var classes = (SelectList)ViewBag.Classes;
+                    if (!teachers.Any())
                 {
                     <div class="modal-body">
                         <span class="text-danger"> Não há professores cadastrados</span>
@@ -28,6 +29,9 @@
                         <div class="form-group text-danger" asp-validation-summary="All">
                             @Html.DisplayNameFor(x => x.TeacherName)
                             @Html.DropDownListFor(x => x.TeacherId, teachers, "Selecione o professor", new { @class="form-control"})
+
+                            @Html.DisplayNameFor(x => x.ClassId)
+                            @Html.DropDownListFor(x => x.ClassId, classes, "Selecione a turma", new { @class="form-control"})
                             
                             @Html.DisplayNameFor(x => x.Name)
                             @Html.TextBoxFor(x => x.Name, new {@class="form-control mt-2"})

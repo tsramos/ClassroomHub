@@ -4,46 +4,64 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using ClassroomHub.Core.Contracts.Services;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using ClassroomHub.Web.ViewModels.ActivityViewModels;
+using AutoMapper;
+using ClassroomHub.Core.Entities;
 
 namespace ClassroomHub.Web.Controllers
 {
     public class ActivityController : Controller
     {
-        List<ActivityToStudentViewModel> activities = new List<ActivityToStudentViewModel>()
-        {
-            //new ActivityToStudentViewModel()
-            //{
-            //    Title = "Criando a modelagem dos dados",
-            //    Description = "Crie as classes necessárias para montar uma base de dado de acordo com oque foi dito em aula . Que se lasque se vc não lembra",
-            //    ActivityScore = 50,
-            //    DueDate = new DateTime(2023,05,24),
-            //    TeacherName = "Thiago Ramos",
-            //    ModuleName = "Projeto MVC com ASPNET"
-            //},
-            //new ActivityToStudentViewModel()
-            //{
-            //    Title = "Implemente o padrão repositorio",
-            //    Description= "Crie o padrão repositorio seguindo as praticas de injeção de dependecia e inversão de controle estudas no modulo passado.",
-            //    ActivityScore = 50,
-            //    DueDate = new DateTime(2023,05,25),
-            //    TeacherName = "Thiago Ramos",
-            //    ModuleName = "Projeto MVC com ASPNET"
-            //}
-        };
         private readonly IActivityService _activityService;
+        private readonly ITeacherService _teacherService;
+        private readonly IStudentService _studentService;
+        private readonly IModuleService _moduleService;
+        private readonly IMapper _mapper;
 
-        public ActivityController(IActivityService activityService)
+        public ActivityController(
+            IActivityService activityService,
+            ITeacherService teacherService,
+            IStudentService studentService,
+            IModuleService moduleService,
+            IMapper mapper)
         {
             _activityService = activityService;
+            _teacherService = teacherService;
+            _studentService = studentService;
+            _moduleService = moduleService;
+            _mapper = mapper;
         }
+
         public IActionResult Index()
         {
-            
-            ViewData["Teacher"] = activities.FirstOrDefault()?.TeacherName ?? "Sem professor";
-            ViewData["ModuleName"] = activities.FirstOrDefault()?.ModuleName ?? "Sem modulo";
+            var teachers = _teacherService.GetAll();
+            var students = _studentService.GetAll();
+            ViewBag.Students = new SelectList(students, "Id", "Name");
+            ViewBag.Teachers = new SelectList(teachers, "Id", "Name");
+            return View(new ActivityIndexModel());
+        }
+
+        public IActionResult TeacherArea(Guid TeacherId)
+        {
+            var modules = _moduleService.GetModulesByTeacherId(TeacherId);
+            var activities = _mapper.Map<List<ActivityViewModel>>( _activityService.GetAllWithModules());            
+            ViewBag.Modules = new SelectList(modules,"Id","Nome");            
             return View(activities);
         }
 
+        public IActionResult Create(ActivityViewModel activityViewModel)
+        {
+            _activityService.Add(_mapper.Map<Activity>(activityViewModel));
+            return RedirectToAction("TeacherArea");
+        }
+        
+        public IActionResult StudentArea(Guid studentId)
+        {
+            var student = _studentService.GetFullObjectById(studentId);
+            var studentAreaViewModel = _mapper.Map<IEnumerable<StudentAreaViewModel>>(student.Class.Modules);
+            return View(studentAreaViewModel);
+        }
 
     }
 }

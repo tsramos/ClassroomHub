@@ -23,7 +23,7 @@ namespace ClassroomHub
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(MapperProfile));
-            services.AddDbContext<Context>(x => x.UseSqlServer("Server=(localdb)\\MSSQLLocalDB;Database=ClassroomHubDB;Trusted_Connection=True;"));
+            services.AddDbContext<Context>(x => x.UseSqlServer("Server=localhost\\SQLEXPRESS;Database=ClassroomHubDb;Trusted_Connection=True;"));
             services.AddControllersWithViews();
             services.AddServicesDependency();
             services.AddRepositoryDependency();

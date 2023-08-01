@@ -1,0 +1,69 @@
+﻿@using ClassroomHub.Web.ViewModels.ActivityViewModels
+@model ActivityViewModel
+
+<form method="post" asp-controller="Activity" asp-action="Create">
+    <div class="modal fade" id="createActivity" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-success">
+                    <h5 class="modal-title text-white">Cadastrar Atividade</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Fechar">
+                        <span aria-hidden="true"></span>
+                    </button>
+                </div>
+                @{
+                    var modules = (SelectList)ViewBag.Modules;
+                    if (!modules.Any())
+                    {
+                        <div class="modal-body">
+                            <span class="text-danger">Não é possível cadastrar novas atividades sem um modulo registrado.</span>
+                            <a type="button" asp-controller="Module" asp-action="Index" class="btn btn-primary mt-2">Cadastrar Curso</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="modal-body">
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    @Html.DropDownListFor(x => x.ModuleId,modules, "Selecione um modulo", new {@class="form-control mt-2"})
+                                    <span asp-validation-for="ModuleId" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    @Html.DisplayNameFor(x => x.Title)
+                                    @Html.TextBoxFor(x => x.Title, new{ Placeholder="Nome da atividade", Attribute="width:100%", @class="form-control mt-2"})
+                                    <span asp-validation-for="Title" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    @Html.DisplayNameFor(x => x.Description)
+                                    @Html.TextAreaFor(x => x.Description, new {Placeholder = "Inicio" ,Type="Date", @class="form-control mt-2" })
+                                    <span asp-validation-for="Description" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-6">
+                                    @Html.DisplayNameFor(x => x.DueDate)
+                                    @Html.TextBoxFor(x => x.DueDate, new {Placeholder = "Conclusão", Type="Date", @class="form-control mt-2"})
+                                    <span asp-validation-for="DueDate" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-12">
+                                    @Html.DisplayNameFor(x =>x.ActivityScore)
+                                    @Html.TextBoxFor(x => x.ActivityScore, new {@class="form-control", Type="Number"})
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Fechar</button>
+                            <button type="submit" class="btn btn-primary">Salvar</button>
+                        </div>
+                    }
+                }
+            </div>
+        </div>
+    </div>
+</form>

@@ -9,8 +9,9 @@ namespace ClassroomHub.Services
     public class ModuleService : IModuleService
     {
         private readonly IModuleRepository _moduleRepository;
+        private readonly ITeacherService _teacherService;
 
-        public ModuleService(IModuleRepository moduleRepository)
+        public ModuleService(IModuleRepository moduleRepository,ITeacherService teacherService)
         {
             _moduleRepository = moduleRepository;
         }
@@ -20,13 +21,18 @@ namespace ClassroomHub.Services
         }
 
         public void Add(Module module)
-        {
+        {            
             _moduleRepository.Add(module);
         }
 
         public Module GetById(Guid id)
         {
             return _moduleRepository.GetById(id);
+        }
+
+        public IEnumerable<Module> GetModulesByTeacherId(Guid id)
+        {
+            return _moduleRepository.GetModulesByTeacherId(id);
         }
     }
 }

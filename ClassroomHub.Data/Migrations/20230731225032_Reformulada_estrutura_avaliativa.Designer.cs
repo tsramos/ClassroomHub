@@ -4,14 +4,16 @@ using ClassroomHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ClassroomHub.Data.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230731225032_Reformulada_estrutura_avaliativa")]
+    partial class Reformulada_estrutura_avaliativa
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -111,7 +113,7 @@ namespace ClassroomHub.Data.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("ClassId")
+                    b.Property<Guid>("Class")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
@@ -126,6 +128,9 @@ namespace ClassroomHub.Data.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<Guid?>("RoomIdId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<DateTime>("Start")
                         .HasColumnType("datetime2");
 
@@ -134,7 +139,7 @@ namespace ClassroomHub.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ClassId");
+                    b.HasIndex("RoomIdId");
 
                     b.HasIndex("TeacherId");
 
@@ -248,11 +253,9 @@ namespace ClassroomHub.Data.Migrations
 
             modelBuilder.Entity("ClassroomHub.Core.Entities.Module", b =>
                 {
-                    b.HasOne("ClassroomHub.Core.Entities.Class", "Class")
+                    b.HasOne("ClassroomHub.Core.Entities.Class", "RoomId")
                         .WithMany("Modules")
-                        .HasForeignKey("ClassId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoomIdId");
 
                     b.HasOne("ClassroomHub.Core.Entities.Teacher", "Teacher")
                         .WithMany("Modules")

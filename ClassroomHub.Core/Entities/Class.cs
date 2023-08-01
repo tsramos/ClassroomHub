@@ -11,5 +11,6 @@ namespace ClassroomHub.Core.Entities
         public List<Student> Students { get; set; }
         public Guid CourseId { get; set; }
         public Course Course { get; set; }
+        public List<Module> Modules { get; set; }
     }
 }

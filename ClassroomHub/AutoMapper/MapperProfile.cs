@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ClassroomHub.Core.Entities;
 using ClassroomHub.Web.ViewModels;
+using ClassroomHub.Web.ViewModels.ActivityViewModels;
 
 namespace ClassroomHub.Web.AutoMapper
 {
@@ -35,6 +36,14 @@ namespace ClassroomHub.Web.AutoMapper
             CreateMap<Module, ModuleViewModel>()
                 .ForMember(x => x.Name, src => src.MapFrom(s => s.Nome))
                 .ForMember(x => x.TeacherName, src => src.MapFrom(x => x.Teacher.Name));
+
+            CreateMap<Activity, ActivityViewModel>()
+                .ForMember(x => x.ModuleName, src => src.MapFrom(x => x.Module.Nome));
+
+            CreateMap<ActivityViewModel, Activity>();
+
+            CreateMap<Module, StudentAreaViewModel>()
+                .ForMember(x => x.ModuleName, src => src.MapFrom(x => x.Nome));
         }
     }
 }

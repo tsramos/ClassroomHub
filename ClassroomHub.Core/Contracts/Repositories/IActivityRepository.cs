@@ -1,11 +1,10 @@
 ﻿using ClassroomHub.Core.Entities;
-using System;
 using System.Collections.Generic;
 
 namespace ClassroomHub.Core.Contracts.Repositories
 {
-    public interface IModuleRepository : IBaseRepository<Module>
+    public interface IActivityRepository : IBaseRepository<Activity>
     {
-        IEnumerable<Module> GetModulesByTeacherId(Guid id);
+        IEnumerable<Activity> GetAllWithModules();
     }
 }

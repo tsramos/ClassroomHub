@@ -11,6 +11,7 @@ namespace ClassroomHub.Data.Configuration
             builder.ToTable("Modules");
             builder.HasKey(x => x.Id);
             builder.HasOne(x => x.Teacher).WithMany(x => x.Modules).HasForeignKey(x => x.TeacherId);
+            builder.HasOne(x => x.Class).WithMany(x => x.Modules);
         }
     }
 }

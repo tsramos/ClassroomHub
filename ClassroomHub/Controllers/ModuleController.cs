@@ -13,20 +13,23 @@ namespace ClassroomHub.Web.Controllers
     {
         private  readonly IModuleService _moduleService;
         private readonly ITeacherService _teacherService;
+        private readonly IClassService _classService;
         private readonly IMapper _mapper;
 
-        public ModuleController(IModuleService moduleService, IMapper mapper, ITeacherService teacherService)
+        public ModuleController(IModuleService moduleService, IMapper mapper, ITeacherService teacherService, IClassService classService)
         {
             _moduleService = moduleService;
-            _mapper = mapper;
             _teacherService = teacherService;
-
+            _classService = classService;
+            _mapper = mapper;
         }
 
         public IActionResult Index()
         {
             var teachers = _mapper.Map<IEnumerable<TeacherViewModel>>(_teacherService.GetAll());
+            var classes = _mapper.Map<IEnumerable<ClassViewModel>>(_classService.GetAll());
             ViewBag.Teachers = new SelectList(teachers, "Id", "Name");
+            ViewBag.Classes = new SelectList(classes, "Id", "Name");
             var modules = _moduleService.GetAll();
             var modulesViewModels = _mapper.Map<IEnumerable<ModuleViewModel>>(modules);
             return View(modulesViewModels);

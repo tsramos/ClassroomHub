@@ -1,14 +1,31 @@
-﻿@using ClassroomHub.Web.ViewModels;
-@model List<ActivityToStudentViewModel>
-<h1>@ViewData["ModuleName"]</h1>
-<h2>@ViewData["Teacher"]</h2>
-@if(Model.Any())
-{    
-    @foreach(var activity in Model){
-        <p>==============================</p>
-        <h3>@activity.Title</h3>
-        <h4>@activity.Description</h4>
-    }
-}else{
-    <h2>Sem atividades</h2>    
-}
+﻿@model ClassroomHub.Web.ViewModels.ActivityViewModels.ActivityIndexModel
+
+<div class="row">
+    <div class="col-6">
+        <div class="card mt-3">
+            <div class="card-header bg-info">
+                <h5 class="card-title">Área do professor</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="TeacherArea" sp-route-id="@Model.TeacherID" class="form-group">
+                    @Html.DropDownListFor(x => x.TeacherID, (SelectList)ViewBag.Teachers, "Escolha um professor", new { @class="form-control mb-2"})
+                    <button class="btn btn-secondary mt2" type="submit">Enviar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="card mt-3">
+            <div class="card-header bg-info">
+                <h5 class="card-title">Área do aluno</h5>
+            </div>
+            <div class="card-body">
+                <form asp-action="StudentArea" sp-route-id="@Model.StudentID" class="form-group">
+                    @Html.DropDownListFor(x => x.StudentID, (SelectList)ViewBag.Students, "Escolha um aluno", new { @class="form-control mb-2"})
+                    <button class="btn btn-secondary mt2" type="submit">Enviar</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

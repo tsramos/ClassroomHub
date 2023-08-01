@@ -1,6 +1,7 @@
 ﻿using ClassroomHub.Core.Contracts.Repositories;
 using ClassroomHub.Core.Contracts.Services;
 using ClassroomHub.Core.Entities;
+using System;
 using System.Collections.Generic;
 
 namespace ClassroomHub.Services
@@ -21,5 +22,9 @@ namespace ClassroomHub.Services
 
         public IEnumerable<Student> GetAll() => _studentRepository.GetAll();
 
+        public Student GetFullObjectById(Guid id)
+        {
+           return _studentRepository.GetFullObjectById(id);
+        }
     }
 }
