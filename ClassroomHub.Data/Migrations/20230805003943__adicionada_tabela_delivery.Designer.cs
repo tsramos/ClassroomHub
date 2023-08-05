@@ -4,14 +4,16 @@ using ClassroomHub.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ClassroomHub.Data.Migrations
 {
     [DbContext(typeof(Context))]
-    partial class ContextModelSnapshot : ModelSnapshot
+    [Migration("20230805003943__adicionada_tabela_delivery")]
+    partial class _adicionada_tabela_delivery
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -27,6 +29,9 @@ namespace ClassroomHub.Data.Migrations
 
                     b.Property<int>("ActivityScore")
                         .HasColumnType("int");
+
+                    b.Property<Guid>("DeliveryId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .IsRequired()
@@ -44,6 +49,9 @@ namespace ClassroomHub.Data.Migrations
                         .HasMaxLength(50);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("DeliveryId")
+                        .IsUnique();
 
                     b.HasIndex("ModuleId");
 
@@ -119,8 +127,6 @@ namespace ClassroomHub.Data.Migrations
                         .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("ActivityId");
 
                     b.HasIndex("StudentId");
 
@@ -252,6 +258,12 @@ namespace ClassroomHub.Data.Migrations
 
             modelBuilder.Entity("ClassroomHub.Core.Entities.Activity", b =>
                 {
+                    b.HasOne("ClassroomHub.Core.Entities.Delivery", "Delivery")
+                        .WithOne("Activity")
+                        .HasForeignKey("ClassroomHub.Core.Entities.Activity", "DeliveryId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
                     b.HasOne("ClassroomHub.Core.Entities.Module", "Module")
                         .WithMany("Activities")
                         .HasForeignKey("ModuleId")
@@ -270,12 +282,6 @@ namespace ClassroomHub.Data.Migrations
 
             modelBuilder.Entity("ClassroomHub.Core.Entities.Delivery", b =>
                 {
-                    b.HasOne("ClassroomHub.Core.Entities.Activity", "Activity")
-                        .WithMany("Deliveries")
-                        .HasForeignKey("ActivityId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
-
                     b.HasOne("ClassroomHub.Core.Entities.Student", "Student")
                         .WithMany("Deliveries")
                         .HasForeignKey("StudentId")

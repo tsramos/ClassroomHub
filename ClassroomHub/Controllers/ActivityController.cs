@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using ClassroomHub.Web.ViewModels.ActivityViewModels;
 using AutoMapper;
 using ClassroomHub.Core.Entities;
+using System.Linq;
 
 namespace ClassroomHub.Web.Controllers
 {
@@ -60,7 +61,19 @@ namespace ClassroomHub.Web.Controllers
         {
             var student = _studentService.GetFullObjectById(studentId);
             var studentAreaViewModel = _mapper.Map<IEnumerable<StudentAreaViewModel>>(student.Class.Modules);
+            foreach (var item in studentAreaViewModel)
+            {
+                item.StudentId = studentId;
+            }
+
             return View(studentAreaViewModel);
+        }
+
+        public IActionResult Details(ActivityDeltailsViewModel value)
+        {            
+            var activity = _activityService.GetById(value.ActivityId);
+            var activityViewModel = _mapper.Map<ActivityDeltailsViewModel>(activity);
+            return View(activityViewModel);
         }
 
     }

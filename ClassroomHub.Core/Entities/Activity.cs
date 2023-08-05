@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ClassroomHub.Core.Entities
 {
@@ -9,10 +10,8 @@ namespace ClassroomHub.Core.Entities
         public DateTime DueDate { get; set; }
         public int ActivityScore { get; set; }
         public Guid ModuleId { get; set; }
-        public Module Module { get; set; }        
-        public DateTime DeliveyDate { get; set; }
-        public string Resolution { get; set; }
-        public int Grade { get; set; }
-        
+        public Module Module { get; set; }
+        public IEnumerable<Delivery> Deliveries { get; set; }
+
     }
 }

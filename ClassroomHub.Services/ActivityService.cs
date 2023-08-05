@@ -2,6 +2,7 @@
 using ClassroomHub.Core.Contracts.Repositories;
 using System.Collections.Generic;
 using ClassroomHub.Core.Entities;
+using System;
 
 namespace ClassroomHub.Services
 {
@@ -23,5 +24,9 @@ namespace ClassroomHub.Services
         {
             return _activityRepository.GetAllWithModules();
         }
+
+        public Activity GetById(Guid id) => 
+            _activityRepository.GetById(id);
+        
     }
 }

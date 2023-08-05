@@ -1,6 +1,7 @@
 ﻿using ClassroomHub.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace ClassroomHub.Data.Configuration
 {
@@ -13,8 +14,7 @@ namespace ClassroomHub.Data.Configuration
             builder.Property(x => x.Title).HasMaxLength(50).IsRequired();
             builder.Property(x => x.Description).IsRequired();
             builder.Property(x => x.DueDate).IsRequired();
-
-            builder.HasOne(x => x.Module).WithMany(x => x.Activities).HasForeignKey(x => x.ModuleId);
+            builder.HasOne(x => x.Module).WithMany(x => x.Activities).HasForeignKey(x => x.ModuleId);            
         }
     }
 }

@@ -9,6 +9,10 @@
     <Compile Remove="Migrations\20230603004044_Initial.Designer.cs" />
     <Compile Remove="Migrations\20230630221541_Adicionado_CourseId_NaTabela_Class.cs" />
     <Compile Remove="Migrations\20230630221541_Adicionado_CourseId_NaTabela_Class.Designer.cs" />
+    <Compile Remove="Migrations\20230805000820_Adicionado_relacionamento_student_activity.cs" />
+    <Compile Remove="Migrations\20230805000820_Adicionado_relacionamento_student_activity.Designer.cs" />
+    <Compile Remove="Migrations\20230805002953__adicionada_tabela_delivery.cs" />
+    <Compile Remove="Migrations\20230805002953__adicionada_tabela_delivery.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.32">
