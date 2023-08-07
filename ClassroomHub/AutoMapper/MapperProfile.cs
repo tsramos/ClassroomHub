@@ -45,7 +45,8 @@ namespace ClassroomHub.Web.AutoMapper
             CreateMap<Module, StudentAreaViewModel>()
                 .ForMember(x => x.ModuleName, src => src.MapFrom(x => x.Nome));
 
-            CreateMap<ActivityDeltailsViewModel, Activity>().ReverseMap();
+            CreateMap<Activity, ActivityDeltailsViewModel>()
+                .ForMember(x => x.ActivityId, src => src.MapFrom(x => x.Id));                
                 
         }
     }

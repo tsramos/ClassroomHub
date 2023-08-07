@@ -1,14 +1,11 @@
-﻿using ClassroomHub.Web.ViewModels;
-using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
-using System;
-using System.Linq;
+﻿using AutoMapper;
 using ClassroomHub.Core.Contracts.Services;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using ClassroomHub.Web.ViewModels.ActivityViewModels;
-using AutoMapper;
 using ClassroomHub.Core.Entities;
-using System.Linq;
+using ClassroomHub.Web.ViewModels.ActivityViewModels;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
+using System.Collections.Generic;
 
 namespace ClassroomHub.Web.Controllers
 {
@@ -69,10 +66,11 @@ namespace ClassroomHub.Web.Controllers
             return View(studentAreaViewModel);
         }
 
-        public IActionResult Details(ActivityDeltailsViewModel value)
+        public IActionResult Details(Guid studentId, Guid ActivityId)
         {            
-            var activity = _activityService.GetById(value.ActivityId);
+            var activity = _activityService.GetById(ActivityId);            
             var activityViewModel = _mapper.Map<ActivityDeltailsViewModel>(activity);
+            activityViewModel.StudentId = studentId;
             return View(activityViewModel);
         }
 

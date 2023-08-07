@@ -1,4 +1,30 @@
 ﻿@using ClassroomHub.Web.ViewModels.ActivityViewModels
-@model ActivityViewModel
+@model ActivityDeltailsViewModel
 
-<form asp-action="SubmitActivity"></form>
+<form method="post" asp-action="DeliveryActivity">
+    <div class="card">
+        <div class="card-header">
+            <h5 class="card-title">@Model.Title</h5>
+        </div>
+        <div class="card-body form-group">
+            @Html.DisplayNameFor(x => x.Description)
+            @Html.TextAreaFor(x => x.Description, new{ @class="form-control" , @readonly=true})
+            <div class="row mt-2">
+                <div class="col-6">
+                    @Html.DisplayNameFor(x => x.DueDate)
+                    @Html.TextBoxFor(x => x.DueDate, new {@class="form-control", @readonly=true})
+                </div>
+                <div class="col-6">
+                    @Html.DisplayNameFor(x => x.ActivityScore)
+                    @Html.TextBoxFor(x => x.ActivityScore, new {@class="form-control", @readonly=true})
+                </div>
+            </div>
+            @Html.DisplayNameFor(x => x.Resolution)
+            @Html.TextAreaFor(x => x.Resolution, new {@class="form-control"})
+        </div>
+        <div class="card-footer">
+            <a type="button" asp-action="StudentArea" asp-route-studentId="@Model.StudentId" class="btn btn-secondary">Voltar</a>
+            <button class="btn btn-primary" type="submit">Enviar</button>
+        </div>
+    </div>
+</form>
