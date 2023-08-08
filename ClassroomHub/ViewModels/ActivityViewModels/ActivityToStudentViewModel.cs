@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
@@ -18,8 +19,9 @@ namespace ClassroomHub.Web.ViewModels.ActivityViewModels
         public DateTime DueDate { get; set; }
         public int ActivityScore { get; set; }
         public string TeacherName { get; set; }
+        public Guid TeacherId { get; set; }
         public string ModuleName { get; set; }
         public Guid ModuleId { get; set; }
-        
+        public IEnumerable<DeliveryViewModel> Deliveries { get; set; }
     }
 }

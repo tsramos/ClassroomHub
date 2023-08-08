@@ -30,9 +30,7 @@ namespace ClassroomHub.Web.ViewModels.ActivityViewModels
         [DisplayName("Data de entrega")]
         public DateTime DueDate { get; set; }
 
-        public int ActivityScore { get; set; }
-
-        public bool Delivered { get; set; }
+        public int Grade { get; set; }
 
     }
 }

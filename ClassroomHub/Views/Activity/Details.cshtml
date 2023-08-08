@@ -7,6 +7,8 @@
             <h5 class="card-title">@Model.Title</h5>
         </div>
         <div class="card-body form-group">
+            @Html.TextBoxFor(x => x.ActivityId, new{type="hidden", value=@Model.ActivityId, @readonly=true})
+            @Html.TextBoxFor(x => x.StudentId, new{type="hidden", value=@Model.StudentId, @readonly=true})
             @Html.DisplayNameFor(x => x.Description)
             @Html.TextAreaFor(x => x.Description, new{ @class="form-control" , @readonly=true})
             <div class="row mt-2">
@@ -15,8 +17,8 @@
                     @Html.TextBoxFor(x => x.DueDate, new {@class="form-control", @readonly=true})
                 </div>
                 <div class="col-6">
-                    @Html.DisplayNameFor(x => x.ActivityScore)
-                    @Html.TextBoxFor(x => x.ActivityScore, new {@class="form-control", @readonly=true})
+                    @Html.DisplayNameFor(x => x.Grade)
+                    @Html.TextBoxFor(x => x.Grade, new {@class="form-control", @readonly=true})
                 </div>
             </div>
             @Html.DisplayNameFor(x => x.Resolution)

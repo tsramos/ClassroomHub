@@ -6,7 +6,7 @@ namespace ClassroomHub.Core.Contracts.Services
 {
     public interface IActivityService
     {
-        IEnumerable<Activity> GetAllWithModules();
+        IEnumerable<Activity> GetAllWithModules(Guid teacherId);
         Activity GetById(Guid id);
         void Add(Activity activity);
     }

@@ -4,48 +4,52 @@
     Guid moduleId = Guid.Empty;
 }
 
-<button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#createActivity">
-    <i class="fa fa-plus" aria-hidden="true"></i>
-</button>
+<div class="row">
+    <button type="button" class="btn btn-primary mb-2" data-toggle="modal" data-target="#createActivity">
+        <i class="fa fa-plus" aria-hidden="true"></i>
+    </button>
+    <a type="button" class="btn btn-primary ml-2 " asp-action="GetDeliveries" asp-route-teacherId="@Model.First().TeacherId">Atividades Entregues</a>
+</div>
 
-    <table class="table table-hover table-striped text-center">
-        <thead>
-            <tr class="success">
-                <th>
-                    @Html.DisplayNameFor(x => x.Title)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(x => x.ModuleName)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(x => x.DueDate)
-                </th>
-                <th>
-                    @Html.DisplayNameFor(x => x.ActivityScore)
-                </th>
-                <th></th>
+
+<table class="table table-hover table-striped text-center">
+    <thead>
+        <tr class="success">
+            <th>
+                @Html.DisplayNameFor(x => x.Title)
+            </th>
+            <th>
+                @Html.DisplayNameFor(x => x.ModuleName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(x => x.DueDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(x => x.ActivityScore)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var activity in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor( x => activity.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => activity.ModuleName)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => activity.DueDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => activity.ActivityScore)
+                </td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var activity in Model)
-            {
-                <tr>
-                    <td>
-                        @Html.DisplayFor( x => activity.Title)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(x => activity.ModuleName)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(x => activity.DueDate)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(x => activity.ActivityScore)
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 
 
 <partial name="_create" model="new ActivityViewModel()" />

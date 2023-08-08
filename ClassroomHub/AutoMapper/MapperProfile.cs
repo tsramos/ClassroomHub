@@ -38,7 +38,9 @@ namespace ClassroomHub.Web.AutoMapper
                 .ForMember(x => x.TeacherName, src => src.MapFrom(x => x.Teacher.Name));
 
             CreateMap<Activity, ActivityViewModel>()
-                .ForMember(x => x.ModuleName, src => src.MapFrom(x => x.Module.Nome));
+                .ForMember(x => x.ModuleName, src => src.MapFrom(x => x.Module.Nome))
+                .ForMember(x => x.TeacherId, src => src.MapFrom(x => x.Module.TeacherId))
+                .ForMember(x => x.Deliveries, src => src.MapFrom(x => x.Deliveries));
 
             CreateMap<ActivityViewModel, Activity>();
 
@@ -46,7 +48,15 @@ namespace ClassroomHub.Web.AutoMapper
                 .ForMember(x => x.ModuleName, src => src.MapFrom(x => x.Nome));
 
             CreateMap<Activity, ActivityDeltailsViewModel>()
-                .ForMember(x => x.ActivityId, src => src.MapFrom(x => x.Id));                
+                .ForMember(x => x.ActivityId, src => src.MapFrom(x => x.Id));
+
+            CreateMap<Delivery, ActivityDeltailsViewModel>().ReverseMap();
+
+            CreateMap<Delivery, DeliveryViewModel>().ReverseMap();
+
+            CreateMap<Module, DeliveryToTeacherViewModel>()
+                .ForMember(x => x.Name, src => src.MapFrom(x => x.Nome))
+                .ForMember(x => x.Activities, src => src.MapFrom(x => x.Activities)).ReverseMap();
                 
         }
     }

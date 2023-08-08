@@ -1,0 +1,38 @@
+﻿@using ClassroomHub.Web.ViewModels
+@model DeliveryViewModel
+
+<div class="modal fade" id="@Model.Id" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <form method="post" asp-action="UpdateDelivery">
+                <div class="modal-header">
+                    <h5 class="modal-title">Avaliação</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body form-group">
+                    @Html.TextBoxFor(x => x.StudentId, new{type="hidden", value=@Model.StudentId, @readonly=true})
+                    @Html.DisplayNameFor(x => x.Description)
+                    @Html.TextAreaFor(x => x.Description, new{ @class="form-control" , @readonly=true})
+                    <div class="row mt-2">
+                        <div class="col-6">
+                            @Html.DisplayNameFor(x => x.DeliveyDate)
+                            @Html.TextBoxFor(x => x.DeliveyDate, new {@class="form-control", @readonly=true})
+                        </div>
+                        <div class="col-6">
+                            @Html.DisplayNameFor(x => x.Grade)
+                            @Html.TextBoxFor(x => x.Grade, new {@class="form-control"} )
+                        </div>
+                    </div>
+                    @Html.DisplayNameFor(x => x.Resolution)
+                    @Html.TextAreaFor(x => x.Resolution, new {@class="form-control", @readonly=true})
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" typeof="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

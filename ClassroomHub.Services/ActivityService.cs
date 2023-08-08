@@ -1,8 +1,9 @@
-﻿using ClassroomHub.Core.Contracts.Services;
-using ClassroomHub.Core.Contracts.Repositories;
-using System.Collections.Generic;
+﻿using ClassroomHub.Core.Contracts.Repositories;
+using ClassroomHub.Core.Contracts.Services;
 using ClassroomHub.Core.Entities;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace ClassroomHub.Services
 {
@@ -20,9 +21,9 @@ namespace ClassroomHub.Services
             _activityRepository.Add(activity);
         }
 
-        public IEnumerable<Activity> GetAllWithModules()
+        public IEnumerable<Activity> GetAllWithModules(Guid teacherId)
         {
-            return _activityRepository.GetAllWithModules();
+            return _activityRepository.GetAllWithModules().Where(x => x.Module.TeacherId == teacherId);
         }
 
         public Activity GetById(Guid id) => 
