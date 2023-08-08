@@ -49,6 +49,7 @@ namespace ClassroomHub.Services
                         {
                             Nome = module.Nome,
                             Id = module.Id, 
+                            TeacherId = teacherId,
                             Activities = new List<Activity>()
                             {
                                 new Activity
@@ -60,7 +61,6 @@ namespace ClassroomHub.Services
                                     Deliveries = activity.Deliveries,
                                 }
                             }
-
                         });
                     }
                 }
